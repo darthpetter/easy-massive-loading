@@ -1,0 +1,25 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.iwb
+
+# NetBeans
+nbproject/
+nb-configuration.xml
+
+# VSCode
+.vscode/
+
+# Logs
+logs/
+*.log
