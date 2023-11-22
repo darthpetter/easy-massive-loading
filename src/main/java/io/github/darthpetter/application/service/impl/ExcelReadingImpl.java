@@ -17,13 +17,32 @@ import io.github.darthpetter.application.utils.ExcelUtils;
 import io.github.darthpetter.domain.model.dto.HeaderNameDTO;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 
+/**
+ * Implementation of the {@link ExcelReading} interface for reading data from
+ * Excel files.
+ */
 public class ExcelReadingImpl implements ExcelReading {
     private ExcelUtils excelUtils;
 
+    /**
+     * Constructor to initialize an instance of {@code ExcelReadingImpl}.
+     * 
+     * @param excelUtils The utility class for Excel operations.
+     */
     public ExcelReadingImpl(ExcelUtils excelUtils) {
         this.excelUtils = excelUtils;
     }
 
+    /**
+     * Reads data from an Excel file into a list of objects of the specified class.
+     * 
+     * @param <T>             The type of objects to be read from Excel.
+     * @param fileInputStream The input stream of the Excel file.
+     * @param targetClass     The class type of the objects to be read.
+     * @return An {@link InnerResponseDTO} containing the list of objects read from
+     *         the Excel file.
+     */
+    @Override
     public <T> InnerResponseDTO<List<T>> read(InputStream fileInputStream, Class<T> targetClass) {
         InnerResponseDTO<List<T>> response = new InnerResponseDTO<>();
         List<T> dataList = new ArrayList<>();

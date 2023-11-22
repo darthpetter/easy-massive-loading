@@ -16,7 +16,20 @@ import io.github.darthpetter.domain.model.annotation.Header;
 import io.github.darthpetter.domain.model.dto.HeaderNameDTO;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 
+/**
+ * Utility class for Excel-related operations.
+ */
 public class ExcelUtils {
+
+    /**
+     * Retrieves header information from the given class using the Header
+     * annotation.
+     *
+     * @param <T>         The type of the class.
+     * @param targetClass The class from which to retrieve header information.
+     * @return An {@link InnerResponseDTO} containing a list of
+     *         {@link HeaderNameDTO}.
+     */
     public <T> InnerResponseDTO<List<HeaderNameDTO>> getHeaders(Class<T> targetClass) {
         InnerResponseDTO<List<HeaderNameDTO>> responseDTO = new InnerResponseDTO<>();
         List<HeaderNameDTO> headers = new ArrayList<>();
@@ -52,6 +65,14 @@ public class ExcelUtils {
         return responseDTO;
     }
 
+    /**
+     * Finds the field in a class based on the provided header label.
+     *
+     * @param clazz  The class to search for the field.
+     * @param header The header label to match.
+     * @return The {@link Field} corresponding to the header label, or null if not
+     *         found.
+     */
     public Field findFieldByHeader(Class<?> clazz, String header) {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
@@ -62,6 +83,12 @@ public class ExcelUtils {
         return null;
     }
 
+    /**
+     * Checks if a given row in an Excel sheet is empty.
+     *
+     * @param row The row to check for emptiness.
+     * @return true if the row is empty, false otherwise.
+     */
     public boolean isEmptyRow(Row row) {
         for (int i = row.getFirstCellNum(); i < row.getLastCellNum(); i++) {
             Cell cell = row.getCell(i);
@@ -72,6 +99,7 @@ public class ExcelUtils {
         return true;
     }
 
+    // Private method to check for duplicate labels
     private boolean hasDuplicates(List<HeaderNameDTO> headers) {
         Map<String, HeaderNameDTO> map = headers.stream()
                 .collect(Collectors.toMap(HeaderNameDTO::getLabel, Function.identity(),

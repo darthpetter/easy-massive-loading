@@ -20,14 +20,32 @@ import io.github.darthpetter.domain.model.annotation.MassiveLoading;
 import io.github.darthpetter.domain.model.dto.HeaderNameDTO;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 
+/**
+ * Implementation of the {@link ExcelWriting} interface for writing data to
+ * Excel files.
+ */
 public class ExcelWritingImpl implements ExcelWriting {
 
     private ExcelUtils excelUtils;
 
+    /**
+     * Constructor to initialize an instance of {@code ExcelWritingImpl}.
+     * 
+     * @param excelUtils The utility class for Excel operations.
+     */
     public ExcelWritingImpl(ExcelUtils excelUtils) {
         this.excelUtils = excelUtils;
     }
 
+    /**
+     * Writes data of a specified class to an Excel file.
+     * 
+     * @param <T>         The type of the data to be written.
+     * @param targetClass The class type of the data.
+     * @param dataList    The list of data objects to be written.
+     * @return An {@link InnerResponseDTO} containing the Excel file data.
+     */
+    @Override
     public <T> InnerResponseDTO<byte[]> write(Class<T> targetClass, List<T> dataList) {
         InnerResponseDTO<byte[]> responseWrite = new InnerResponseDTO<byte[]>();
         try {
@@ -104,5 +122,4 @@ public class ExcelWritingImpl implements ExcelWriting {
         }
         return responseWrite;
     }
-
 }
