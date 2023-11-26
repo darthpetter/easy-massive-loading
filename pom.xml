@@ -4,7 +4,7 @@
   <groupId>io.github.darthpetter</groupId>
   <artifactId>easy-massive-loading</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.0.5</version>
   <name>easy-helper</name>
   <description>This is a java library to make easier the proccess of creations of "Massive Loading" features.</description>
   <url>https://github.com/darthpetter</url>
