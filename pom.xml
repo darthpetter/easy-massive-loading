@@ -6,8 +6,8 @@
   <packaging>jar</packaging>
   <version>1.0</version>
   <name>easy-helper</name>
-  <description>Easy Helper is a java library to make easier the proccess of creations of "Massive Loading" features.</description>
-  <url>http://maven.apache.org</url>
+  <description>This is a java library to make easier the proccess of creations of "Massive Loading" features.</description>
+  <url>https://github.com/darthpetter</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
