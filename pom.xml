@@ -2,10 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.darthpetter</groupId>
-  <artifactId>easy-helper</artifactId>
+  <artifactId>easy-massive-loading</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
   <name>easy-helper</name>
+  <description>Easy Helper is a java library to make easier the proccess of creations of "Massive Loading" features.</description>
   <url>http://maven.apache.org</url>
   <licenses>
     <license>
@@ -105,9 +106,6 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <skip>true</skip>
-          </configuration>
           <version>2.9.1</version>
           <executions>
             <execution>
