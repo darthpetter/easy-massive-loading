@@ -33,8 +33,8 @@ public class ExcelWritingImpl implements ExcelWriting {
      * 
      * @param excelUtils The utility class for Excel operations.
      */
-    public ExcelWritingImpl(ExcelUtils excelUtils) {
-        this.excelUtils = excelUtils;
+    public ExcelWritingImpl() {
+        this.excelUtils = new ExcelUtils();
     }
 
     /**
@@ -78,32 +78,34 @@ public class ExcelWritingImpl implements ExcelWriting {
                 cell.setCellStyle(headerCellStyle);
             }
 
-            int rowIndex = 1;
-            for (T data : dataList) {
-                Row dataRow = sheet.createRow(rowIndex);
-
-                for (int i = 0; i < orderedHeaders.size(); i++) {
-
-                    final int index = i;
-                    HeaderNameDTO it = orderedHeaders.get(i);
-                    Field field = this.excelUtils.findFieldByHeader(data.getClass(), it.getVariable());
-
-                    if (field != null) {
-                        field.setAccessible(true);
-                        Object value;
-                        Cell cell = dataRow.createCell(index);
-                        try {
-                            value = field.get(data);
-                            if (value != null) {
-                                cell.setCellValue(value.toString());
+            if(dataList!=null){
+                int rowIndex = 1;
+                for (T data : dataList) {
+                    Row dataRow = sheet.createRow(rowIndex);
+    
+                    for (int i = 0; i < orderedHeaders.size(); i++) {
+    
+                        final int index = i;
+                        HeaderNameDTO it = orderedHeaders.get(i);
+                        Field field = this.excelUtils.findFieldByHeader(data.getClass(), it.getVariable());
+    
+                        if (field != null) {
+                            field.setAccessible(true);
+                            Object value;
+                            Cell cell = dataRow.createCell(index);
+                            try {
+                                value = field.get(data);
+                                if (value != null) {
+                                    cell.setCellValue(value.toString());
+                                }
+                            } catch (IllegalArgumentException | IllegalAccessException e) {
+                                cell.setCellValue("");
+                                e.printStackTrace();
                             }
-                        } catch (IllegalArgumentException | IllegalAccessException e) {
-                            cell.setCellValue("");
-                            e.printStackTrace();
                         }
                     }
+                    rowIndex++;
                 }
-                rowIndex++;
             }
 
             try {

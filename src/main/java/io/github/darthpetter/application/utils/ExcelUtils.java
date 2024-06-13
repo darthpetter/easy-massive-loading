@@ -34,7 +34,7 @@ public class ExcelUtils {
         InnerResponseDTO<List<HeaderNameDTO>> responseDTO = new InnerResponseDTO<>();
         List<HeaderNameDTO> headers = new ArrayList<>();
         try {
-            Field[] fields = targetClass.getDeclaredFields();
+            Field[] fields=this.getAllFields(targetClass);
 
             for (Field field : fields) {
                 if (field.isAnnotationPresent(Header.class)) {
@@ -107,5 +107,19 @@ public class ExcelUtils {
 
         return map.values().stream()
                 .anyMatch(dto -> dto != null && Collections.frequency(map.keySet(), dto.getLabel()) > 1);
+    }
+
+    private Field[] getAllFields(Class<?> targetClass) {
+        List<Field> fields = new ArrayList<>();
+        Class<?> currentClass = targetClass;
+
+        while (currentClass != null) {
+            for (Field field : currentClass.getDeclaredFields()) {
+                fields.add(field);
+            }
+            currentClass = currentClass.getSuperclass();
+        }
+
+        return fields.toArray(new Field[0]);
     }
 }

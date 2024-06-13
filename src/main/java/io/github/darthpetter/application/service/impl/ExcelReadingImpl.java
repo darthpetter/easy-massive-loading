@@ -29,8 +29,8 @@ public class ExcelReadingImpl implements ExcelReading {
      * 
      * @param excelUtils The utility class for Excel operations.
      */
-    public ExcelReadingImpl(ExcelUtils excelUtils) {
-        this.excelUtils = excelUtils;
+    public ExcelReadingImpl() {
+        this.excelUtils = new ExcelUtils();
     }
 
     /**
