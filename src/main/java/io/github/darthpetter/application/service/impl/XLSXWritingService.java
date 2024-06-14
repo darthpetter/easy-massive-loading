@@ -14,17 +14,17 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import io.github.darthpetter.application.service.IExcelWritingService;
+import io.github.darthpetter.application.service.IXLSXWritingService;
 import io.github.darthpetter.application.utils.ExcelUtils;
 import io.github.darthpetter.domain.model.annotation.MassiveLoading;
 import io.github.darthpetter.domain.model.dto.HeaderNameDTO;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 
 /**
- * Implementation of the {@link IExcelWritingService} interface for writing data to
+ * Implementation of the {@link IXLSXWritingService} interface for writing data to
  * Excel files.
  */
-public class ExcelWritingService implements IExcelWritingService {
+public class XLSXWritingService implements IXLSXWritingService {
 
     private ExcelUtils excelUtils;
 
@@ -33,7 +33,7 @@ public class ExcelWritingService implements IExcelWritingService {
      * 
      * @param excelUtils The utility class for Excel operations.
      */
-    public ExcelWritingService() {
+    public XLSXWritingService() {
         this.excelUtils = new ExcelUtils();
     }
 

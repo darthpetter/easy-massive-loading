@@ -9,16 +9,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import io.github.darthpetter.application.service.impl.ExcelReadingService;
-import io.github.darthpetter.application.service.impl.ExcelWritingService;
+import io.github.darthpetter.application.service.impl.XLSXReadingService;
+import io.github.darthpetter.application.service.impl.XLSXWritingService;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 import io.github.darthpetter.example.domain.dto.persons.Programmer;
 
 public class ExampleApp {
     public static void main(String[] args) {
         try {
-
-            ExcelWritingService excelWritingService = new ExcelWritingService();
+            XLSXWritingService excelWritingService = new XLSXWritingService();
             InnerResponseDTO<byte[]> responseFile = excelWritingService.write(Programmer.class, null);
             if (!responseFile.isOk()) {
                 throw new Exception(responseFile.getMessage());
@@ -27,7 +26,7 @@ public class ExampleApp {
             Files.write(path, responseFile.getData());
 
             Path pathForReading = Paths.get("/app/resources/files/excel_read.xlsx");
-            ExcelReadingService excelReadingService = new ExcelReadingService();
+            XLSXReadingService excelReadingService = new XLSXReadingService();
             FileInputStream fileInputStream = new FileInputStream(pathForReading.toFile());
             InnerResponseDTO<List<Programmer>> responseReadedFile = excelReadingService.read(fileInputStream,
                     Programmer.class);

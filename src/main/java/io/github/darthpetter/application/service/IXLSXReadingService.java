@@ -8,7 +8,7 @@ import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 /**
  * Interface for reading data from Excel files.
  */
-public interface IExcelReadingService {
+public interface IXLSXReadingService {
 
     /**
      * Reads data from an Excel file into a list of objects of the specified class.

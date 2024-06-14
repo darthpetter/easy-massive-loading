@@ -3,17 +3,17 @@ package io.github.darthpetter.example.application.services.impl;
 import java.io.InputStream;
 import java.util.List;
 
-import io.github.darthpetter.application.service.impl.ExcelReadingService;
+import io.github.darthpetter.application.service.impl.XLSXReadingService;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 import io.github.darthpetter.example.application.services.ProgrammerService;
 import io.github.darthpetter.example.domain.dto.persons.Programmer;
 
 public class ProgrammerServiceImpl implements ProgrammerService {
 
-    private ExcelReadingService excelReading;
+    private XLSXReadingService excelReading;
 
     public ProgrammerServiceImpl() {
-        this.excelReading = new ExcelReadingService();
+        this.excelReading = new XLSXReadingService();
     }
 
     @Override
