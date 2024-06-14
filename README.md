@@ -87,7 +87,7 @@ In @Header is optional to pass order and label:
 
 #### Reading
 
-We inject in our application controller/service, the ExcelReadingImpl class.
+We inject in our application controller/service, the XLSXReadingService class.
 
 The read() function transforms the file into a List of the model provided as the second argument and expects two parameters:
 
@@ -96,10 +96,10 @@ The read() function transforms the file into a List of the model provided as the
 
 ```java
 public class App{
-  private ExcelReadingImpl excelReading;
+  private XLSXReadingService excelReading;
 
   // Using dependencies injection
-  public App(ExcelReadingImpl excelReading)
+  public App()
   {
     this.excelReading = excelReading;
   }
@@ -120,7 +120,7 @@ public class App{
 
 #### Writing
 
-We inject in our application controller/service, the ExcelWritingImpl class.
+We inject in our application controller/service, the XLSXWritingService class.
 
 The write() function generates a byte array from a file, incorporating the headers specified in the model and a list of instances of that model. This results in the creation of an Excel file in the form of a byte array.
 
@@ -129,12 +129,12 @@ The write() function generates a byte array from a file, incorporating the heade
 
 ```java
 public class App{
-  private ExcelWritingImpl excelWriting;
+  private XLSXWritingService excelWriting;
 
   private List<Empleado> empleados = new ArrayList<>();
 
   // Using dependencies injection
-  public App(ExcelWritingImpl excelWriting)
+  public App(XLSXWritingService excelWriting)
   {
     this.excelWriting = excelWriting;
 
@@ -143,9 +143,10 @@ public class App{
     empleado1.setNombre("Juan");
     empleado1.setApellido("Perez");
     empleado1.setActivo(true)
+
     Empleado empleado2 = new Empleado();
     empleado2.setEdad(30);
-    empleado2.setNombre("Maria");
+    empleado2.setNombre("María");
     empleado2.setApellido("Gomez");
     empleado2.setActivo(false)
 
