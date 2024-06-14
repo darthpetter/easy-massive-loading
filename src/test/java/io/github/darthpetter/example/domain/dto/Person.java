@@ -6,10 +6,10 @@ import io.github.darthpetter.domain.model.annotation.MassiveLoading;
 @MassiveLoading
 public class Person {
     @Header(label = "First Name")
-    private String firstName;
+    protected String firstName;
     
     @Header(label = "Last Name")
-    private String lastName;
+    protected String lastName;
 
     public String getFirstName() {
         return firstName;

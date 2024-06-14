@@ -12,16 +12,17 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import io.github.darthpetter.application.service.ExcelReading;
+import io.github.darthpetter.application.service.IExcelReadingService;
 import io.github.darthpetter.application.utils.ExcelUtils;
 import io.github.darthpetter.domain.model.dto.HeaderNameDTO;
 import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 
 /**
- * Implementation of the {@link ExcelReading} interface for reading data from
+ * Implementation of the {@link IExcelReadingService} interface for reading data
+ * from
  * Excel files.
  */
-public class ExcelReadingImpl implements ExcelReading {
+public class ExcelReadingService implements IExcelReadingService {
     private ExcelUtils excelUtils;
 
     /**
@@ -29,7 +30,7 @@ public class ExcelReadingImpl implements ExcelReading {
      * 
      * @param excelUtils The utility class for Excel operations.
      */
-    public ExcelReadingImpl() {
+    public ExcelReadingService() {
         this.excelUtils = new ExcelUtils();
     }
 
@@ -76,7 +77,7 @@ public class ExcelReadingImpl implements ExcelReading {
                             HeaderNameDTO headerNameDTO = headersPresents.get(i);
 
                             if (cell != null) {
-                                Field field = instance.getClass().getDeclaredField(headerNameDTO.getVariable());
+                                Field field = this.excelUtils.findField(targetClass, headerNameDTO.getVariable());
                                 field.setAccessible(true);
 
                                 Class<?> fieldType = field.getType();

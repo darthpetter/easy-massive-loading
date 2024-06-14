@@ -34,7 +34,7 @@ public class ExcelUtils {
         InnerResponseDTO<List<HeaderNameDTO>> responseDTO = new InnerResponseDTO<>();
         List<HeaderNameDTO> headers = new ArrayList<>();
         try {
-            Field[] fields=this.getAllFields(targetClass);
+            Field[] fields = this.getAllFields(targetClass);
 
             for (Field field : fields) {
                 if (field.isAnnotationPresent(Header.class)) {
@@ -99,7 +99,6 @@ public class ExcelUtils {
         return true;
     }
 
-    // Private method to check for duplicate labels
     private boolean hasDuplicates(List<HeaderNameDTO> headers) {
         Map<String, HeaderNameDTO> map = headers.stream()
                 .collect(Collectors.toMap(HeaderNameDTO::getLabel, Function.identity(),
@@ -112,14 +111,25 @@ public class ExcelUtils {
     private Field[] getAllFields(Class<?> targetClass) {
         List<Field> fields = new ArrayList<>();
         Class<?> currentClass = targetClass;
-
         while (currentClass != null) {
             for (Field field : currentClass.getDeclaredFields()) {
                 fields.add(field);
             }
             currentClass = currentClass.getSuperclass();
         }
-
         return fields.toArray(new Field[0]);
+    }
+
+    public Field findField(Class<?> targetClass, String nameField) {
+        Class<?> currentClass = targetClass;
+        while (currentClass != null) {
+            try {
+                Field field = currentClass.getDeclaredField(nameField);
+                return field;
+            } catch (NoSuchFieldException e) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+        return null;
     }
 }

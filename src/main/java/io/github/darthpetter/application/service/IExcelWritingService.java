@@ -7,7 +7,7 @@ import io.github.darthpetter.domain.model.dto.InnerResponseDTO;
 /**
  * Interface for writing data to Excel files.
  */
-public interface ExcelWriting {
+public interface IExcelWritingService {
 
     /**
      * Writes data of a specified class to an Excel file.
