@@ -26,9 +26,7 @@ public class XLSXReadingService implements IXLSXReadingService {
     private ExcelUtils excelUtils;
 
     /**
-     * Constructor to initialize an instance of {@code ExcelReadingImpl}.
-     * 
-     * @param excelUtils The utility class for Excel operations.
+     * Constructor to initialize an instance of {@code XLSXReadingService}.
      */
     public XLSXReadingService() {
         this.excelUtils = new ExcelUtils();

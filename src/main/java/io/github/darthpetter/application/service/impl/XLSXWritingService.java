@@ -29,9 +29,7 @@ public class XLSXWritingService implements IXLSXWritingService {
     private ExcelUtils excelUtils;
 
     /**
-     * Constructor to initialize an instance of {@code ExcelWritingImpl}.
-     * 
-     * @param excelUtils The utility class for Excel operations.
+     * Constructor to initialize an instance of {@code XLSXWritingService}.
      */
     public XLSXWritingService() {
         this.excelUtils = new ExcelUtils();
